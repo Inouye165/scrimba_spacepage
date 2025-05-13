@@ -20,19 +20,19 @@ html, body {
     
     min-height: 100dvh; /* Use dynamic viewport height for better mobile compatibility */
 
-    /* Flexbox to position the .top-content-area */
+    /* Flexbox to position content */
     display: flex;
     flex-direction: column;     /* Stack children of #hero vertically */
-    align-items: center;       /* Center direct children (like .top-content-area) horizontally */
-    justify-content: flex-start; /* Push direct children (like .top-content-area) to the top */
+    align-items: center;       /* Center direct children horizontally */
+    /* Distribute space: top content at top, terms at bottom */
+    justify-content: space-between; 
 
     /* Padding to ensure content is visible below status bar/notch and away from edges */
-    /* Adds your 20px base padding PLUS space for the iPhone's top status bar/notch area */
     padding-top: calc(20px + env(safe-area-inset-top)); 
     padding-left: 20px;       /* Your preferred left padding for the content block */
     padding-right: 20px;      /* Your preferred right padding for the content block */
-    /* Adds space at the bottom for the iPhone's home indicator area, if content reaches there */
-    padding-bottom: calc(10px + env(safe-area-inset-bottom)); /* 10px is an example base bottom padding */
+    /* Adjusted bottom padding to primarily rely on safe-area, terms box will have its own margin/padding */
+    padding-bottom: env(safe-area-inset-bottom, 20px); /* Fallback to 20px if safe-area not supported */
 
     box-sizing: border-box;   /* Includes padding in the element's total width/height */
 }
@@ -40,11 +40,11 @@ html, body {
 /* Container for the logo and the main hero text/button */
 .top-content-area {
     display: flex;            /* Arranges logo and hero-text in a row */
-    align-items: flex-start;  /* Aligns tops of logo and hero-text block */
-                              /* Use 'center' if you prefer their vertical midlines aligned */
+    align-items: flex-start;  /* Aligns tops of logo and hero-text block - maintains vertical position */
     gap: 20px;                /* Space between the logo and the hero-text block */
-    /* This block's width will be determined by its content. */
-    /* It will be centered horizontally by #hero's 'align-items: center'. */
+    width: 100%;              /* Allow the top content area to use available width */
+    max-width: 1200px;        /* Optional: constrain max width on very large screens */
+    justify-content: center;  /* Center the flex items (logo and hero-text block) if they don't fill the width */
 }
 
 /* Logo styling */
@@ -55,13 +55,14 @@ html, body {
     object-fit: cover;        /* Ensures the image fills the oval container */
     object-position: center 10%; /* From your original, centers horizontally and shifts down slightly */
     overflow: hidden;         /* Ensures the zoomed content stays within the oval */
-    flex-shrink: 0;           /* Prevents the logo from shrinking if there's not enough space */
+    flex-shrink: 0;           /* Prevents the logo from shrinking */
 }
 
 /* Container for the heading and button */
 .hero-text {
-    text-align: left; /* Text and button will be left-aligned within this block by default */
-                      /* Change to 'center' if you want H1 and button centered within this text block */
+    text-align: center;     /* MODIFIED: Centers H1 and button within this block */
+    flex-grow: 1;           /* ADDED: Allows this block to take available space next to logo */
+                            /* This helps in making the text appear more centered in the broader context */
 }
 
 /* Heading styling */
@@ -69,7 +70,6 @@ h1 {
     margin-top: 0; /* Top aligns with logo's top due to '.top-content-area' align-items: flex-start */
     margin-bottom: 20px; /* Space between heading and button */
     font-family: 'Orbitron', sans-serif; /* Your chosen font */
-    /* color: red; /* Inherits from body, but can be set explicitly */
 }
 
 /* Underline style for the span within the heading */
@@ -90,11 +90,17 @@ h1 {
     display: inline-block;    /* Allows it to sit nicely with text-align and not take full width */
 }
 
-/* Styling for the "Terms and conditions apply" text */
-h3 { 
+/* Styling for the "Terms and conditions apply" text box */
+.terms-conditions { 
     font-family: Arial, sans-serif; /* Using a standard font */
     font-size: 0.8em;       /* Slightly smaller text */
-    color: #555;            /* A slightly softer color than the main red */
-    text-align: center;     /* Ensure it's centered */
-    padding: 10px;          /* Some spacing around it */
+    color: #333;            /* Dark grey color for better readability on white */
+    background: white;      /* White background for the box */
+    border: 4px solid red;  /* Red border, similar to the button */
+    border-radius: 15px;    /* Rounded corners, slightly less than button or same */
+    padding: 10px 15px;     /* Internal spacing within the box */
+    text-align: center;     /* Ensure text is centered inside the box */
+    margin-bottom: 10px;    /* Adds a little space from the very bottom edge of #hero, inside its padding */
+    max-width: 90%;         /* Prevents the box from becoming too wide on larger screens */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for depth */
 }
