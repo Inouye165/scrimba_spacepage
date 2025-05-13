@@ -1,46 +1,85 @@
 body {
-    color: red;
-    text-align: center;
-
-
+    color: red; /* Default text color for the page */
+    margin: 0;
+    font-family: Arial, sans-serif; /* A fallback font */
 }
 
-.btn {
-    padding: 6px 12px;
-    background: white;
-    color: red;
-        border-width: 4px;
+#hero {
+    /* position: relative; /* Still good practice, though not strictly needed for current layout */
+    
+    /* --- Updated Background Styles --- */
+    background-image: url("images/skate.gif");
+    background-size: 100% auto;     /* 1. Fills width, height adjusts proportionally */
+    background-position: top center; /* 2. Shows top, centers horizontally. Crops bottom if too tall. */
+    background-repeat: no-repeat;    /* Important: Prevents tiling if image is shorter than container */
+    
+    min-height: 100vh; /* Ensures hero section takes full viewport height */
 
-    border-radius: 20px;
+    /* --- Flexbox to position the .top-content-area --- */
+    display: flex;
+    flex-direction: column;     /* Stack children of #hero vertically (though only one main child here) */
+    align-items: center;       /* Center direct children (like .top-content-area) horizontally */
+    justify-content: flex-start; /* Push direct children (like .top-content-area) to the top */
+
+    padding-top: 20px;        /* Overall space from the top edge of the screen */
+    padding-left: 20px;       /* Overall space from the left edge */
+    padding-right: 20px;      /* Overall space from the right edge */
+    box-sizing: border-box;   /* Includes padding in the element's total width/height */
+}
+
+.top-content-area {
+    display: flex;            /* Arranges logo and hero-text in a row */
+    align-items: flex-start;  /* Aligns tops of logo and hero-text block */
+                              /* Use 'center' if you prefer their vertical midlines aligned */
+    gap: 20px;                /* Space between the logo and the hero-text block */
+    /* This block will be centered by #hero's 'align-items: center' */
+    /* Its width will be determined by its content (logo + text + gap) */
+}
+
+#logo {
+    /* --- Logo is no longer absolutely positioned --- */
+    width: 80px;
+    height: 57px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 10%;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevents the logo from shrinking if there's not enough space */
+}
+
+.hero-text {
+    /* This div wraps the H1 and button */
+    text-align: left; /* Text and button will be left-aligned within this block */
+                      /* Change to 'center' if you want them centered relative to each other here */
+}
+
+h1 {
+    margin-top: 0; /* Top aligns with logo's top due to '.top-content-area' align-items: flex-start */
+    margin-bottom: 20px; /* Space between heading and button */
     font-family: 'Orbitron', sans-serif;
-    background: transparent;
+    color: red; /* Ensures text color is red */
 }
 
 .underline {
     border-bottom: 4px solid red;
 }
 
-#logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  width: 80px; /* Width of the oval stays the same */
-  height: 57px; /* Height reduced by 5% (from 60px to 57px) */
-  border-radius: 50%; /* Makes the image round/oval */
-  object-fit: cover; /* Ensures the image fills the oval container */
-  object-position: center 10%; /* Centers horizontally and shifts down */
-  display: block; /* Makes the image a block element */
-  overflow: hidden; /* Ensures the zoomed content stays within the oval */
+.btn {
+    padding: 6px 12px;
+    color: red;
+    border: 4px solid red; /* Combined border properties */
+    border-radius: 20px;
+    font-family: 'Orbitron', sans-serif;
+    background: white; /* Button background */
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block; /* Allows it to sit nicely with text-align and not take full width */
 }
 
-/* The object-fit property with a scale value higher than 1 will make the image appear larger while staying contained */
-#hero {
-    background-image: url("images/skate.gif");
-    background-size: contain; 
-    
-    background-position: center center; /* Centers the background image */
-    background-repeat: no-repeat; /* Prevents tiling if 'contain' leaves empty space */
-    background-attachment: fixed; /* Keeps background fixed during scroll */
-    min-height: 100vh; /* Ensures body takes at least full viewport height */
-
+h3 { /* Styling for "Terms and conditions apply" */
+    font-family: Arial, sans-serif;
+    font-size: 0.8em;
+    color: #555; /* A slightly softer color */
+    text-align: center;
+    padding: 10px;
 }
