@@ -1,23 +1,46 @@
 body {
     color: red;
-    background-image: url("images/puppies.jpg");
     text-align: center;
 
-    /* --- Responsive Background Properties --- */
-    background-size: cover;        /* Scales the image while preserving aspect ratio to cover the entire area. Crucial for responsiveness. */
-    background-repeat: no-repeat;  /* Prevents the image from tiling if it doesn't fully cover (though 'cover' usually makes this redundant). */
-    background-position: center center; /* Centers the image, so cropping (if necessary due to 'cover') happens evenly from the edges. */
-    background-attachment: fixed;    /* Optional: Keeps the background image fixed in place while the content scrolls over it. Creates a nice parallax effect. */
-    min-height: 100vh;             /* Ensures the body is at least as tall as the viewport, so the background covers the full screen even with little content. */
+
 }
 
 .btn {
     padding: 6px 12px;
     background: white;
-    border: none;
+    color: red;
+        border-width: 4px;
+
+    border-radius: 20px;
     font-family: 'Orbitron', sans-serif;
+    background: transparent;
 }
 
 .underline {
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid red;
+}
+
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  width: 80px; /* Width of the oval stays the same */
+  height: 57px; /* Height reduced by 5% (from 60px to 57px) */
+  border-radius: 50%; /* Makes the image round/oval */
+  object-fit: cover; /* Ensures the image fills the oval container */
+  object-position: center 10%; /* Centers horizontally and shifts down */
+  display: block; /* Makes the image a block element */
+  overflow: hidden; /* Ensures the zoomed content stays within the oval */
+}
+
+/* The object-fit property with a scale value higher than 1 will make the image appear larger while staying contained */
+#hero {
+    background-image: url("images/skate.gif");
+    background-size: contain; 
+    
+    background-position: center center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents tiling if 'contain' leaves empty space */
+    background-attachment: fixed; /* Keeps background fixed during scroll */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+
 }
