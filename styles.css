@@ -1,85 +1,100 @@
-body {
-    color: red; /* Default text color for the page */
+/* Basic reset and page defaults */
+html, body {
     margin: 0;
-    font-family: Arial, sans-serif; /* A fallback font */
+    padding: 0;
+    width: 100%;
+    font-family: Arial, sans-serif; /* A sensible default fallback font */
+    color: red; /* Default text color from your original body style */
+    /* overflow-x: hidden; /* Optional: good for preventing accidental horizontal scroll */
 }
 
+/* Hero section styling */
 #hero {
-    /* position: relative; /* Still good practice, though not strictly needed for current layout */
+    position: relative; /* Establishes a positioning context, good practice */
     
-    /* --- Updated Background Styles --- */
-    background-image: url("images/skate.gif");
-    background-size: 100% auto;     /* 1. Fills width, height adjusts proportionally */
-    background-position: top center; /* 2. Shows top, centers horizontally. Crops bottom if too tall. */
-    background-repeat: no-repeat;    /* Important: Prevents tiling if image is shorter than container */
+    /* Background animation styles */
+    background-image: url("images/skate.gif"); /* Ensure this path is correct */
+    background-size: 100% auto;     /* Fills width, height adjusts proportionally */
+    background-position: top center; /* Shows top of BG, centers horizontally. Crops bottom if needed. */
+    background-repeat: no-repeat;    /* Prevents tiling if image is shorter than container */
     
-    min-height: 100vh; /* Ensures hero section takes full viewport height */
+    min-height: 100dvh; /* Use dynamic viewport height for better mobile compatibility */
 
-    /* --- Flexbox to position the .top-content-area --- */
+    /* Flexbox to position the .top-content-area */
     display: flex;
-    flex-direction: column;     /* Stack children of #hero vertically (though only one main child here) */
+    flex-direction: column;     /* Stack children of #hero vertically */
     align-items: center;       /* Center direct children (like .top-content-area) horizontally */
     justify-content: flex-start; /* Push direct children (like .top-content-area) to the top */
 
-    padding-top: 20px;        /* Overall space from the top edge of the screen */
-    padding-left: 20px;       /* Overall space from the left edge */
-    padding-right: 20px;      /* Overall space from the right edge */
+    /* Padding to ensure content is visible below status bar/notch and away from edges */
+    /* Adds your 20px base padding PLUS space for the iPhone's top status bar/notch area */
+    padding-top: calc(20px + env(safe-area-inset-top)); 
+    padding-left: 20px;       /* Your preferred left padding for the content block */
+    padding-right: 20px;      /* Your preferred right padding for the content block */
+    /* Adds space at the bottom for the iPhone's home indicator area, if content reaches there */
+    padding-bottom: calc(10px + env(safe-area-inset-bottom)); /* 10px is an example base bottom padding */
+
     box-sizing: border-box;   /* Includes padding in the element's total width/height */
 }
 
+/* Container for the logo and the main hero text/button */
 .top-content-area {
     display: flex;            /* Arranges logo and hero-text in a row */
     align-items: flex-start;  /* Aligns tops of logo and hero-text block */
                               /* Use 'center' if you prefer their vertical midlines aligned */
     gap: 20px;                /* Space between the logo and the hero-text block */
-    /* This block will be centered by #hero's 'align-items: center' */
-    /* Its width will be determined by its content (logo + text + gap) */
+    /* This block's width will be determined by its content. */
+    /* It will be centered horizontally by #hero's 'align-items: center'. */
 }
 
+/* Logo styling */
 #logo {
-    /* --- Logo is no longer absolutely positioned --- */
     width: 80px;
     height: 57px;
     border-radius: 50%;
-    object-fit: cover;
-    object-position: center 10%;
-    overflow: hidden;
-    flex-shrink: 0; /* Prevents the logo from shrinking if there's not enough space */
+    object-fit: cover;        /* Ensures the image fills the oval container */
+    object-position: center 10%; /* From your original, centers horizontally and shifts down slightly */
+    overflow: hidden;         /* Ensures the zoomed content stays within the oval */
+    flex-shrink: 0;           /* Prevents the logo from shrinking if there's not enough space */
 }
 
+/* Container for the heading and button */
 .hero-text {
-    /* This div wraps the H1 and button */
-    text-align: left; /* Text and button will be left-aligned within this block */
-                      /* Change to 'center' if you want them centered relative to each other here */
+    text-align: left; /* Text and button will be left-aligned within this block by default */
+                      /* Change to 'center' if you want H1 and button centered within this text block */
 }
 
+/* Heading styling */
 h1 {
     margin-top: 0; /* Top aligns with logo's top due to '.top-content-area' align-items: flex-start */
     margin-bottom: 20px; /* Space between heading and button */
-    font-family: 'Orbitron', sans-serif;
-    color: red; /* Ensures text color is red */
+    font-family: 'Orbitron', sans-serif; /* Your chosen font */
+    /* color: red; /* Inherits from body, but can be set explicitly */
 }
 
+/* Underline style for the span within the heading */
 .underline {
     border-bottom: 4px solid red;
 }
 
+/* Button styling */
 .btn {
     padding: 6px 12px;
     color: red;
-    border: 4px solid red; /* Combined border properties */
+    border: 4px solid red;    /* Combined border properties */
     border-radius: 20px;
-    font-family: 'Orbitron', sans-serif;
-    background: white; /* Button background */
-    text-decoration: none;
+    font-family: 'Orbitron', sans-serif; /* Your chosen font */
+    background: white;        /* Button background */
+    text-decoration: none;    /* Removes underline if it were an <a> tag styled as button */
     cursor: pointer;
-    display: inline-block; /* Allows it to sit nicely with text-align and not take full width */
+    display: inline-block;    /* Allows it to sit nicely with text-align and not take full width */
 }
 
-h3 { /* Styling for "Terms and conditions apply" */
-    font-family: Arial, sans-serif;
-    font-size: 0.8em;
-    color: #555; /* A slightly softer color */
-    text-align: center;
-    padding: 10px;
+/* Styling for the "Terms and conditions apply" text */
+h3 { 
+    font-family: Arial, sans-serif; /* Using a standard font */
+    font-size: 0.8em;       /* Slightly smaller text */
+    color: #555;            /* A slightly softer color than the main red */
+    text-align: center;     /* Ensure it's centered */
+    padding: 10px;          /* Some spacing around it */
 }
