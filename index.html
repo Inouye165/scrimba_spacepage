@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Exploration Page</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="./styles.css?v=1.6" /> <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+  <title>Exploration Page</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css?v=1.8">
 </head>
 <body>
-    <div id="hero">
-        <div class="top-content-area">
-            <img src="images/dobby.jpg" alt="Dobby logo" id="logo">
-            <div class="hero-text">
-                <h1 id="title">Join the <span class="underline">exploration</span></h1>
-                <button class="btn">Apply</button>
-            </div>
-
-        </div>
+    <!-- 1️⃣ absolute‐positioned logo, no longer in the flex row -->
+    <div class="logo-container">
+      <img src="images/dobby.jpg" alt="Dobby logo">
+    </div>  
+  <div id="hero">
 
 
+
+    <!-- 2️⃣ only the text + button in the flex row now -->
+    <div class="top-content-area">
+      <div class="hero-text">
+        <h1 id="title">
+          Join the <span class="underline">exploration</span>
+        </h1>
+        <button class="btn">Apply</button>
+      </div>
     </div>
+
+    <!-- 3️⃣ terms box stays where it was -->
+    <div class="terms-conditions">
+      * Terms and conditions apply
+    </div>
+  </div>
+
 </body>
 </html>

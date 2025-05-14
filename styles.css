@@ -1,124 +1,126 @@
-/* Basic reset and page defaults */
+/* -------------------------------------------------- */
+/* 1. RESET & GLOBAL STYLES                          */
+/* -------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    font-family: Arial, sans-serif; /* A sensible default fallback font */
-    color: red; /* Default text color from your original body style */
-    /* overflow-x: hidden; /* Optional: good for preventing accidental horizontal scroll */
-    background: radial-gradient(circle, #a2d2ff, #6dc2da);
-    color: #ffffff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle, #a2d2ff, #6dc2da);
+  color: #ffffff;
 }
 
-/* Hero section styling */
+/* -------------------------------------------------- */
+/* 2. HERO SECTION                                   */
+/* -------------------------------------------------- */
 #hero {
-    position: relative; /* Crucial for absolute positioning of children */
-    
-    /* Background animation styles */
-    background-image: url("images/skate.gif"); /* Ensure this path is correct */
-    background-size: 100% auto;     /* Fills width, height adjusts proportionally */
-    background-position: top center; /* Shows top of BG, centers horizontally. Crops bottom if needed. */
-    background-repeat: no-repeat;    /* Prevents tiling if image is shorter than container */
-    border-radius: 50%;
-    min-height: 100dvh; /* Use dynamic viewport height for better mobile compatibility */
+  position: relative;
+  width: 90vw;               /* 90% of viewport */
+  max-width: 600px;          /* never wider than 600px */
+  margin: 80px auto;         /* push down and center */
+  aspect-ratio: 2 / 1;       /* perfect pill shape */
+  overflow: hidden;
 
-    /* Flexbox to position content */
-    display: flex;
-    flex-direction: column;     /* Stack children of #hero vertically */
-    align-items: center;       /* Center direct children horizontally */
-    /* MODIFIED: .top-content-area will be at the start. Terms box is now out of flow. */
-    justify-content: flex-start; 
-        border-radius: 50%;
-    border: 6px solid red;
+  background: url("images/skate.gif") center/cover no-repeat;
+  border: 6px solid red;
+  border-radius: 50%;
 
-    /* Padding to ensure content is visible below status bar/notch and away from edges */
-    padding-top: calc(20px + env(safe-area-inset-top)); 
-    padding-left: 20px;       /* Your preferred left padding for the content block */
-    padding-right: 20px;      /* Your preferred right padding for the content block */
-    /* Bottom padding for safe area. Terms box will be positioned relative to hero's edges. */
-    padding-bottom: env(safe-area-inset-bottom, 20px); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 
-    box-sizing: border-box;   /* Includes padding in the element's total width/height */
+  padding: calc(20px + env(safe-area-inset-top))
+           20px
+           env(safe-area-inset-bottom, 20px);
 }
 
-/* Container for the logo and the main hero text/button */
+/* -------------------------------------------------- */
+/* 3. LOGO (absolute in top-left of #hero)           */
+/* -------------------------------------------------- */
+.logo-container {
+  position: absolute;
+  top: calc(20px + env(safe-area-inset-top));
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid red;
+  background: white;
+  z-index: 2;
+}
+
+.logo-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center -35%;
+
+    /* ZOOM: grow by 20% */
+  transform: scale(1.5);
+  transform-origin: center center;
+}
+
+/* -------------------------------------------------- */
+/* 4. TOP CONTENT: HERO TEXT + BUTTON                 */
+/* -------------------------------------------------- */
 .top-content-area {
-    display: flex;            /* Arranges logo and hero-text in a row */
-    align-items: flex-start;  /* Aligns tops of logo and hero-text block - maintains vertical position */
-    gap: 20px;                /* Space between the logo and the hero-text block */
-    width: 100%;              /* Allow the top content area to use available width */
-    max-width: 1200px;        /* Optional: constrain max width on very large screens */
-    justify-content: center;  /* Center the flex items (logo and hero-text block) if they don't fill the width */
-    z-index: 1; /* Ensure it's above the background but below a potentially higher z-index terms box if needed */
+  display: flex;
+  justify-content: center;   /* center the text block */
+  width: 100%;
+  z-index: 1;
 }
 
-/* Logo styling */
-#logo {
-    width: 80px;
-    height: 57px;
-    border-radius: 50%;
-    border: 2px solid red;
-
-    object-fit: cover;        /* Ensures the image fills the oval container */
-    object-position: center 10%; /* From your original, centers horizontally and shifts down slightly */
-    overflow: hidden;         /* Ensures the zoomed content stays within the oval */
-    flex-shrink: 0;           /* Prevents the logo from shrinking */
-}
-
-/* Container for the heading and button */
 .hero-text {
-    text-align: center;     /* Centers H1 and button within this block */
-    flex-grow: 1;           /* Allows this block to take available space next to logo */
-    
+  text-align: center;
 }
 
-/* Heading styling */
-h1 {
-    margin-top: 0; 
-    margin-bottom: 20px; 
-    font-family: 'Orbitron', sans-serif; 
-}
-
-/* Underline style for the span within the heading */
-.underline {
-    border-bottom: 4px solid red;
-}
-
-/* Button styling */
-.btn {
-    padding: 6px 12px;
-    color: red;
-    border: 4px solid red;    
-    border-radius: 20px;
-    font-family: 'Orbitron', sans-serif; 
-    background: white;        
-    text-decoration: none;    
-    cursor: pointer;
-    display: inline-block;    
-}
-
-/* Styling for the "Terms and conditions apply" text box */
-.terms-conditions { 
-    position: absolute; /* MODIFIED: Takes it out of normal flow */
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); /* MODIFIED: 10px from bottom or safe area */
-    left: 50%;
-    transform: translateX(-50%); /* Centers the box */
-    
-    width: auto; /* Let content and padding define width */
-    max-width: 90%; /* Prevents the box from becoming too wide */
-    
-    font-family: Arial, sans-serif; 
-    font-size: 0.8em;       
-    color: #333;            
-    background: white;      
-    border: 4px solid red;  
-    border-radius: 15px;    
-    padding: 10px 15px;     
-    text-align: center;     
-    /* margin-bottom: 10px; /* REMOVED: Not needed with absolute positioning's bottom property */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-    z-index: 2; /* Ensure it's above other content if necessary */
-}
 #title {
-    text-shadow: 2px 2px 4px black;
+  margin: 0 0 20px;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.underline {
+  border-bottom: 4px solid red;
+}
+
+/* -------------------------------------------------- */
+/* 5. BUTTON                                         */
+/* -------------------------------------------------- */
+.btn {
+  padding: 6px 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: red;
+  background: white;
+  border: 4px solid red;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------- */
+/* 6. TERMS & CONDITIONS BOX                         */
+/* -------------------------------------------------- */
+.terms-conditions {
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  background: white;
+  color: #333;
+  border: 4px solid red;
+  border-radius: 15px;
+  padding: 10px 15px;
+  font-size: 0.8em;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 2;
 }
