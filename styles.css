@@ -26,9 +26,10 @@ button {
     width: 200px;
     margin-bottom: 5px;
     border-radius: 5px;
+    background-color: blue;
 }
 
-#increment-btn {
+#like-btn {
     background: darkred;
 }
 
@@ -36,3 +37,9 @@ button {
     background: darkgreen;
 }
 
+.container {
+    background: transparent;
+    max-width: 80%;
+    margin: auto;
+
+}
