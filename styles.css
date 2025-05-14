@@ -19,21 +19,31 @@ html, body {
 /* -------------------------------------------------- */
 #hero {
   position: relative;
-  width: 90vw;               /* 90% of viewport */
-  max-width: 600px;          /* never wider than 600px */
-  margin: 80px auto;         /* push down and center */
-  aspect-ratio: 2 / 1;       /* perfect pill shape */
+
+  /* sizing & positioning of the pill */
+  width: 90vw;
+  max-width: 600px;
+  margin: 80px auto;
+  aspect-ratio: 1.4 / 1;
   overflow: hidden;
 
-  background: url("images/skate.gif") center/cover no-repeat;
-  border: 6px solid red;
-  border-radius: 50%;
+  /* background GIF, sized to 60% of the pill (zoom-out) */
+  background-image: url("images/skate.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:100% auto;
 
+  /* border & shape */
+  border: 6px solid red;
+  border-radius: 20%;
+
+  /* layout for logo, text, etc. */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 
+  /* safe-area padding for notches/status bars */
   padding: calc(20px + env(safe-area-inset-top))
            20px
            env(safe-area-inset-bottom, 20px);
