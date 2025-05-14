@@ -1,42 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
-  <title>Exploration Page</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&display=swap"
-    rel="stylesheet"
-  >
-  <link rel="stylesheet" href="styles.css?v=1.8">
-</head>
-<body>
-    <!-- 1️⃣ absolute‐positioned logo, no longer in the flex row -->
-    <div class="logo-container">
-      <img src="images/dobby.jpg" alt="Dobby logo">
-    </div>  
-  <div id="hero">
-
-
-
-    <!-- 2️⃣ only the text + button in the flex row now -->
-    <div class="top-content-area">
-      <div class="hero-text">
-        <h1 id="title">
-          Join the <span class="underline">exploration</span>
-        </h1>
-        <button class="btn">Apply</button>
-      </div>
-    </div>
-
-    <!-- 3️⃣ terms box stays where it was -->
-    <div class="terms-conditions">
-      * Terms and conditions apply
-    </div>
-  </div>
-
-</body>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>People entered:</h1>
+        <h2 id="count-el">0</h2>
+        <!-- Create a INCREMENT button with the id="increment-btn" -->
+        <button id="increment-btn" onclick="increment()">INCREMENT</button>
+        <script src="index.js"></script>
+    </body>
 </html>
